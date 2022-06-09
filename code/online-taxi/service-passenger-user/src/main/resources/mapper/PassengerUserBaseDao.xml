@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.taxi.servicepassengeruser.dao.PassengerUserBaseDao">
+  <resultMap id="BaseResultMap" type="com.online.taxi.servicepassengeruser.entity.PassengerUserBase">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="register_date" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="lock_flag" jdbcType="CHAR" property="lockFlag" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="update_user_id" jdbcType="BIGINT" property="updateUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, login_name, `password`, nick_name, gender, phone, email, register_date, lock_flag, 
+    create_date, update_date, create_user_id, update_user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from passenger_user_base
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPhone" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from passenger_user_base
+    where phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from passenger_user_base
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.online.taxi.servicepassengeruser.entity.PassengerUserBase" useGeneratedKeys="true">
+    insert into passenger_user_base (id, login_name, `password`, nick_name,
+      gender, phone, email, 
+      register_date, lock_flag, create_date, 
+      update_date, create_user_id, update_user_id
+      )
+    values (#{id,jdbcType=BIGINT},#{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+      #{gender,jdbcType=CHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{registerDate,jdbcType=TIMESTAMP}, #{lockFlag,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}, #{updateUserId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.online.taxi.servicepassengeruser.entity.PassengerUserBase" useGeneratedKeys="true">
+    insert into passenger_user_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="registerDate != null">
+        register_date,
+      </if>
+      <if test="lockFlag != null">
+        lock_flag,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockFlag != null">
+        #{lockFlag,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.online.taxi.servicepassengeruser.entity.PassengerUserBase">
+    update passenger_user_base
+    <set>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        register_date = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockFlag != null">
+        lock_flag = #{lockFlag,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.online.taxi.servicepassengeruser.entity.PassengerUserBase">
+    update passenger_user_base
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=TIMESTAMP},
+      lock_flag = #{lockFlag,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      update_user_id = #{updateUserId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

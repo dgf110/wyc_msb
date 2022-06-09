@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="defaultCache">
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <!--defaultCache:echcache的默认缓存策略  -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxElementsOnDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
+
+    <!-- 乘客缓存 【key：passenger】-->
+    <cache name="passenger"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="120"
+           timeToLiveSeconds="120"
+           maxElementsOnDisk="10000000"
+           diskExpiryThreadIntervalSeconds="120"
+           memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+</ehcache>
